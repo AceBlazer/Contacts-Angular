@@ -1,0 +1,47 @@
+<div class="container spacer">
+  <div class="card text-center">
+    <div class="card-header">
+      Liste des contacts
+    </div>
+    <div class="card-body">
+      <div class="card-text">
+
+        <div class="form-group">
+         <label>Mot clé: </label>
+         <input type="text" [(ngModel)]="motCle"/>
+         <button class="btn btn-primary" (click)="chercher()">Chercher</button>
+        </div>
+
+        <table class="table table-striped">
+          <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>E-mail</th>
+            <th>Tel</th>
+          </tr>
+      <tr *ngFor="let c of pageContacts?.content">
+        <td>{{c.id}}</td>
+        <td>{{c.nom}}</td>
+        <td>{{c.prenom}}</td>
+        <td>{{c.email}}</td>
+        <td>{{c.tel}}</td>
+        <td> <a (click)="onEditContact(c.id)" class="clickable"> Edit </a> </td>
+        <td> <a (click)="onDelete(c)" class="clickable"> Delete </a> </td>
+      </tr>
+        </table>
+
+        <div class="container">
+          <ul class="pagination  justify-content-center">
+            <li class="page-item" [ngClass]="{'active': i==currentPage}" *ngFor="let p of pages; let i=index">
+              <a class="page-link" (click)="gotoPage(i)">{{i}}</a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
